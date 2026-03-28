@@ -1,0 +1,76 @@
+name: 功能需求 / Feature Request
+description: 提交新功能需求，由协作者按此 Issue 实施
+title: "feat: "
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: background
+    attributes:
+      label: 背景 / Background
+      description: 为什么要做这个功能？解决什么问题？
+      placeholder: 描述需求背景、使用场景和动机
+    validations:
+      required: true
+
+  - type: textarea
+    id: requirement
+    attributes:
+      label: 需求描述 / Requirement
+      description: 具体要实现什么？
+      placeholder: 详细描述需要实现的功能、交互或行为
+    validations:
+      required: true
+
+  - type: textarea
+    id: implementation-guide
+    attributes:
+      label: 实施指南 / Implementation Guide
+      description: 修改哪些文件、复用哪些脚本、有哪些禁止项？
+      placeholder: |
+        - 修改 `codex.py` 中的 ...
+        - 同步调整 `run.bat` / `run.sh` 或 `install.ps1` / `install.sh`
+        - 复用 `scripts/` 或 `config/` 下已有逻辑
+        - 禁止：不要无关改动账号存储格式或 CLI 主流程
+    validations:
+      required: true
+
+  - type: textarea
+    id: acceptance-criteria
+    attributes:
+      label: 验收标准 / Acceptance Criteria
+      description: 用 checkbox 列出验收条件
+      placeholder: |
+        - [ ] 功能按描述正常工作
+        - [ ] 受影响平台完成自测
+        - [ ] README / QUICKSTART 已同步更新（如需要）
+    validations:
+      required: true
+
+  - type: textarea
+    id: test-cases
+    attributes:
+      label: 测试用例 / Test Cases
+      description: 输入 -> 输出的具体 case（选填）
+      placeholder: |
+        **Case 1**：输入 xxx -> 预期输出 yyy
+        **Case 2**：在 Windows / macOS / Linux 上执行 xxx -> 预期行为 bbb
+    validations:
+      required: false
+
+  - type: textarea
+    id: allowed-files
+    attributes:
+      label: 允许修改的文件范围 / Allowed Files
+      description: 明确列出可以修改的文件或目录，范围外的文件禁止修改
+      placeholder: |
+        - `codex.py`
+        - `config/`
+        - `scripts/`
+        - `install.ps1`
+        - `install.sh`
+        - `run.bat`
+        - `run.sh`
+        - `README.md`
+        - `QUICKSTART.md`
+    validations:
+      required: true
