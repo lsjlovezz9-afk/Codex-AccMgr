@@ -6,5 +6,12 @@ This file is ASCII-only for safe encoding across terminals.
 - Windows: double-click `run.bat`
 - macOS/Linux: run `./run.sh` (first time: `chmod +x run.sh`)
 
-## CLI
-- `python codex.py`
+## Source Checkout
+- CLI package entry: `PYTHONPATH=src python -m codex_accmgr`
+- GUI package entry: `PYTHONPATH=src python -m codex_accmgr.gui`
+- Compatibility wrapper: `python codex.py`
+
+## Editable Install
+- `python -m pip install -e .`
+- CLI: `codex-accmgr`
+- GUI: `codex-accmgr-gui`
