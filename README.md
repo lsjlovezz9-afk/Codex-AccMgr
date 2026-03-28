@@ -8,8 +8,9 @@
 简洁、跨平台的 Codex 多账号切换命令行工具。
 
 ### ⚙️ 环境依赖
-- 本工具基于 Python 编写，运行前需确保已安装 **[Python 3.6+](https://www.python.org/downloads/)**。
+- 本工具基于 Python 编写，运行前需确保已安装 **[Python 3.10+](https://www.python.org/downloads/)**。
 - 无第三方依赖库，无需额外执行 `pip install`，下载即用。
+- GUI 入口为可选能力，若需要请安装 `PySide6` 或执行 `python -m pip install -e .[gui]`。
 
 ### ✨ 核心功能
 - **轻量管理**：仅保存 `auth.json`，单账号占用极小。
@@ -42,8 +43,11 @@
    ```
    *(或者在网页端点击 `Code` -> `Download ZIP` 解压)*
 2. **运行工具**：
-   - **Windows**: 双击运行目录下的 `run.bat`，或者在终端执行 `python codex.py`
-   - **macOS / Linux**: 在终端执行 `chmod +x run.sh && ./run.sh`，或者执行 `python3 codex.py`
+   - **Windows**: 双击运行目录下的 `run.bat`，或者在终端执行 `set PYTHONPATH=src && python -m codex_accmgr`
+   - **macOS / Linux**: 在终端执行 `chmod +x run.sh && ./run.sh`，或者执行 `PYTHONPATH=src python3 -m codex_accmgr`
+   - **兼容入口**: `python codex.py`
+   - **可编辑安装**: `python -m pip install -e .` 后可直接使用 `codex-accmgr`
+   - **GUI 入口**: `PYTHONPATH=src python -m codex_accmgr.gui`
 
 ### 📖 使用说明
 
@@ -63,11 +67,15 @@
     └── ...
 
 codex-accmgr/
-├── codex.py                # 主程序 CLI 入口
-├── run.bat / run.sh        # 本地运行脚本
-├── bin/                    # 核心逻辑与业务代码
-├── config/accounts.json    # 账号列表配置
-└── scripts/install.py      # 本地环境别名配置脚本
+├── codex.py                          # 兼容 CLI 薄封装入口
+├── run.bat / run.sh                  # 模块化运行脚本
+├── src/codex_accmgr/                 # 主包目录
+│   ├── domain/                       # 纯业务规则与模型
+│   ├── application/                  # 用例编排
+│   ├── infrastructure/               # 文件/进程/系统适配
+│   └── presentation/                 # CLI / GUI 入口
+├── config/accounts.json              # 账号列表配置
+└── pyproject.toml                    # 包声明与入口脚本
 ```
 
 ### 💻 界面预览
@@ -104,8 +112,9 @@ Current Account / 当前账号:
 A lightweight, cross-platform CLI for managing and switching multiple Codex accounts.
 
 ### ⚙️ Prerequisites
-- This tool is written in Python. You must have **[Python 3.6+](https://www.python.org/downloads/)** installed before running it.
+- This tool is written in Python. You must have **[Python 3.10+](https://www.python.org/downloads/)** installed before running it.
 - No third-party dependencies are required (`pip install` is not needed), just download and run.
+- The GUI entry point is optional. Install `PySide6` or run `python -m pip install -e .[gui]` if you want it.
 
 ### ✨ Core Features
 - **Lightweight**: Only keeps `auth.json` with minimal disk usage.
@@ -138,8 +147,11 @@ If you prefer not to use the automated scripts, you can download the source and 
    ```
    *(Or click `Code` -> `Download ZIP` on the web interface to extract horizontally)*
 2. **Run the tool**:
-   - **Windows**: Double-click `run.bat` in the directory, or run `python codex.py` in your terminal.
-   - **macOS / Linux**: Run `chmod +x run.sh && ./run.sh` in your terminal, or run `python3 codex.py`.
+   - **Windows**: Double-click `run.bat`, or run `set PYTHONPATH=src && python -m codex_accmgr` in your terminal.
+   - **macOS / Linux**: Run `chmod +x run.sh && ./run.sh`, or run `PYTHONPATH=src python3 -m codex_accmgr`.
+   - **Compatibility entry**: `python codex.py`
+   - **Editable install**: run `python -m pip install -e .`, then launch `codex-accmgr`
+   - **GUI entry**: `PYTHONPATH=src python -m codex_accmgr.gui`
 
 ### 📖 Usage
 
@@ -161,11 +173,15 @@ If you prefer not to use the automated scripts, you can download the source and 
     └── ...
 
 codex-accmgr/
-├── codex.py                # Main CLI entry point
-├── run.bat / run.sh        # One-click runners
-├── bin/                    # Core logic and business code
-├── config/accounts.json    # Account list configuration
-└── scripts/install.py      # Alias install script
+├── codex.py                          # Compatibility CLI shim
+├── run.bat / run.sh                  # Module-based runners
+├── src/codex_accmgr/                 # Main package
+│   ├── domain/                       # Pure business rules and models
+│   ├── application/                  # Use-case orchestration
+│   ├── infrastructure/               # Files, processes, and system adapters
+│   └── presentation/                 # CLI / GUI entry points
+├── config/accounts.json              # Account list configuration
+└── pyproject.toml                    # Package metadata and entry points
 ```
 
 ### 💻 UI Preview
